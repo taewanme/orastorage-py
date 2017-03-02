@@ -9,10 +9,10 @@ import os
 
 class TestUtilConfigFile(unittest.TestCase):
     def test_data_dir(self):
-        test_dir = get_target_dir_for_test()
-        self.assertTrue('oracloud-storage-py/target' in test_dir)
-        self.assertTrue(os.path.isdir(test_dir))
-        self.assertTrue(os.path.exists(test_dir))
+        target_dir = get_target_dir_for_test()
+        self.assertTrue('-py/target' in target_dir)
+        self.assertTrue(os.path.isdir(target_dir))
+        self.assertTrue(os.path.exists(target_dir))
 
     def test_cached_login_info(self):
         login_ini = get_login_info()

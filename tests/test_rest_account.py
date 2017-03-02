@@ -3,7 +3,7 @@ import unittest
 
 
 class MyTestCase(unittest.TestCase):
-    def test_something(self):
+    def ptest_something(self):
         self.assertEqual(1, 1)
         self.assertEqual(2, 2)
         self.assertEqual(2, 2)
