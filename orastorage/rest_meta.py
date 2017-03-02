@@ -2,7 +2,7 @@ import re
 
 ORACLOUD_STORAGE_STEC = {
     'identity':{
-        'authenticate a user':{
+        'authenticate a user': {
             'task': 'idnetity',
             'api_name': 'Authenticate a user',
             'path': '/auth/v1.0/',
@@ -21,8 +21,8 @@ ORACLOUD_STORAGE_STEC = {
                 'X-Storage-Url',
                 'X-Trans-Id'
             ],
-            'success_statuscodes': [200],
-            'fail_statuscodes': [401]
+            'success_status_codes': [200],
+            'fail_status_codes': [401]
         }
     },
     'accounts':{
@@ -39,8 +39,8 @@ ORACLOUD_STORAGE_STEC = {
                 'X-Auth-Token'
             ],
             'response headers': [],
-            'success_statuscodes': [204],
-            'fail_statuscodes': [401]
+            'success_status_codes': [204],
+            'fail_status_codes': [401]
         },
         'bulk delete':{
             'path': '/v1/{account}',
@@ -52,8 +52,8 @@ ORACLOUD_STORAGE_STEC = {
                                 'X-Account-Container-Count', 'X-Account-Meta-Temp-URL-Key',
                                 'X-Account-Meta-Temp-URL-Key-2', 'X-Account-Meta-name',
                                 'X-Account-Object-Count', 'X-Timestamp', 'X-Trans-Id'],
-            'success_statuscodes': [200],
-            'fail_statuscode': [204, 401]
+            'success_status_codes': [200],
+            'fail_status_codes': [204, 401]
         },
         'show account details':{
             'task': 'accounts',
@@ -67,8 +67,8 @@ ORACLOUD_STORAGE_STEC = {
                                 'X-Account-Container-Count', 'X-Account-Meta-Temp-URL-Key',
                                 'X-Account-Meta-Temp-URL-Key-2', 'X-Account-Meta-name',
                                 'X-Account-Object-Count', 'X-Timestamp', 'X-Trans-Id'],
-            'success_statuscodes': [200],
-            'fail_statuscodes': [204, 401]
+            'success_status_codes': [200],
+            'fail_status_codes': [204, 401]
         },
         'show account metadata': {
             'task': 'accounts',
@@ -81,8 +81,8 @@ ORACLOUD_STORAGE_STEC = {
                                 'X-Account-Meta-Temp-URL-Key', 'X-Account-Meta-Temp-URL-Key-2',
                                 'X-Account-Meta-{name}', 'X-Account-Object-Count', 'X-Timestamp',
                                 'X-Trans-Id'],
-            'success_statuscodes': [204],
-            'fail_statuscodes': [401]
+            'success_status_codes': [204],
+            'fail_status_codes': [401]
         }
     },
     'bulk operations':{
@@ -90,7 +90,7 @@ ORACLOUD_STORAGE_STEC = {
             'path': '/v1/{account}',
             'request header': ['Accept','Content-Length', 'Content-Type', 'X-Auth-Token'],
             'body': ['Errors', 'Number Deleted', 'Number Not Found', 'Response Body', 'Response Status'],
-            'success_statuscodes': [200]
+            'success_status_codes': [200]
         }
     },
     'containers': {
@@ -116,8 +116,8 @@ ORACLOUD_STORAGE_STEC = {
                                  'Date',
                                  'X-Timestamp',
                                  'X-Trans-Id'],
-            'success_statuscodes': [201, 202],
-            'fail_statuscodes': [401, 403, ]
+            'success_status_codes': [201, 202],
+            'fail_status_codes': [401, 403, ]
         },
         'delete container': {
             'task': 'containers',
@@ -134,8 +134,8 @@ ORACLOUD_STORAGE_STEC = {
                                  'Date',
                                  'X-Timestamp',
                                  'X-Trans-Id'],
-            'success_statuscodes': [204],
-            'fail_statuscodes': [401,403,404,409]
+            'success_status_codes': [204],
+            'fail_status_codes': [401,403,404,409]
         },
         'show container details and list objects': {
             'task': 'containers',
@@ -151,15 +151,21 @@ ORACLOUD_STORAGE_STEC = {
                 'X-Container-Meta-Temp-URL-Key-2',
                 'X-Newest'
             ],
-            'response headers': ['Accept-Ranges','Content-Length','Content-Type','Date',
-                                 'X-Container-Bytes-Used','X-Container-Meta-Access-Control-Allow-Origin',
+            'response headers': ['Accept-Ranges',
+                                 'Content-Length',
+                                 'Content-Type',
+                                 'Date',
+                                 'X-Container-Bytes-Used',
+                                 'X-Container-Meta-Access-Control-Allow-Origin',
                                  'X-Container-Meta-Access-Control-Expose-Headers',
                                  'X-Container-Meta-Access-Control-Max-Age',
-                                 'X-Container-Meta-Temp-URL-Key','X-Container-Meta-Temp-URL-Key-2',
-                                 'X-Container-Meta-{name}','X-Container-Object-Count',
+                                 'X-Container-Meta-Temp-URL-Key',
+                                 'X-Container-Meta-Temp-URL-Key-2',
+                                 'X-Container-Meta-{name}',
+                                 'X-Container-Object-Count',
                                  'X-Timestamp','X-Trans-Id'],
-            'success_statuscodes': [200,204],
-            'fail_statuscodes': [401, 403, 404, 409]
+            'success_status_codes': [200,204],
+            'fail_status_codes': [401, 403, 404, 409]
         },
         'show container metadata': {
             'task': 'containers',
@@ -173,17 +179,26 @@ ORACLOUD_STORAGE_STEC = {
                 'X-Container-Meta-Temp-URL-Key-2',
                 'X-Newest'
             ],
-            'response headers': ['Accept-Ranges', 'Content-Length', 'Content-Type', 'Date',
-                                 'X-Container-Bytes-Used', 'X-Container-Meta-Access-Control-Allow-Origin',
+            'response headers': ['Accept-Ranges',
+                                 'Content-Length',
+                                 'Content-Type',
+                                 'Date',
+                                 'X-Container-Bytes-Used',
+                                 'X-Container-Meta-Access-Control-Allow-Origin',
                                  'X-Container-Meta-Access-Control-Expose-Headers',
                                  'X-Container-Meta-Access-Control-Max-Age',
-                                 'X-Container-Meta-Quota-Count','X-Container-Meta-Quota-Bytes'
-                                 'X-Container-Meta-Temp-URL-Key', 'X-Container-Meta-Temp-URL-Key-2',
-                                 'X-Container-Meta-{name}', 'X-Container-Object-Count',
-                                 'X-Container-Write','X-Container-Read',
-                                 'X-Timestamp', 'X-Trans-Id'],
-            'success_statuscodes': [204],
-            'fail_statuscodes': [401, 403, 404]
+                                 'X-Container-Meta-Quota-Count',
+                                 'X-Container-Meta-Quota-Bytes'
+                                 'X-Container-Meta-Temp-URL-Key',
+                                 'X-Container-Meta-Temp-URL-Key-2',
+                                 'X-Container-Meta-{name}',
+                                 'X-Container-Object-Count',
+                                 'X-Container-Write',
+                                 'X-Container-Read',
+                                 'X-Timestamp',
+                                 'X-Trans-Id'],
+            'success_status_codes': [204],
+            'fail_status_codes': [401, 403, 404]
         },
 
     },
@@ -197,11 +212,13 @@ ORACLOUD_STORAGE_STEC = {
             'request headers': ['X-Auth-Token'],
             'response headers': ['Content-Length',
                                  'Content-Type',
-                                 'Date', 'ETag', 'Last-Modified',
+                                 'Date',
+                                 'ETag',
+                                 'Last-Modified',
                                  'X-Timestamp',
                                  'X-Trans-Id'],
-            'success_statuscodes': [200],
-            'fail_statuscodes': []
+            'success_status_codes': [200],
+            'fail_status_codes': []
         }
     },
     'objects':{
@@ -210,16 +227,16 @@ ORACLOUD_STORAGE_STEC = {
             'api_name': 'create or replace object',
             'path': '/v1/{account}/{container}/{object}',
             'method': 'PUT',
-            'query params': ['multipart-manifest','temp_url_expires','temp_url_sig'],
+            'query params': ['multipart-manifest', 'temp_url_expires', 'temp_url_sig'],
             'request headers': [
                 'Content-Disposition', 'Content-Encoding',
                 'Content-Length', 'Content-Type','ETag',
-                'If-None-Match','Transfer-Encoding','X-Auth-Token'
-                'X-Copy-From', 'X-Delete-After','X-Delete-At','X-Object-Meta-{name}'
+                'If-None-Match', 'Transfer-Encoding', 'X-Auth-Token'
+                'X-Copy-From', 'X-Delete-After', 'X-Delete-At', 'X-Object-Meta-{name}'
             ],
             'response headers': ['Content-Length',
                                  'Content-Type',
-                                 'Date','ETag','Last-Modified',
+                                 'Date', 'ETag', 'Last-Modified',
                                  'X-Timestamp',
                                  'X-Trans-Id'],
             'success_statuscodes': [201, 202],
@@ -238,8 +255,8 @@ ORACLOUD_STORAGE_STEC = {
                                  'Date',
                                  'X-Timestamp',
                                  'X-Trans-Id'],
-            'success_statuscodes': [204],
-            'fail_statuscodes': [401,403,404]
+            'success_status_codes': [204],
+            'fail_status_codes': [401, 403, 404]
         },
         'Get object content and metadata': {},
         'Show object metadata': {}
@@ -248,53 +265,40 @@ ORACLOUD_STORAGE_STEC = {
 
 
 class ApiSpec:
-    def __init__(self, task, api_name):
-        spec = self._loadApiSpec(task, api_name)
-
+    def __init__(self, spec):
         if spec is None or not isinstance(spec, dict):
             raise TypeError("sepc parameter shoud be dict type")
         if spec.get('method').islower():
             raise ValueError('method should be uppercase in %s, %s' %
                              (spec.get('task'), spec.get('api_name')))
 
-        self._task= spec.get('task')
-        self._api_name= spec.get('api_name')
-        self._path= spec.get('path')
-        self._method= spec.get('method')
-        self._query_params= spec.get('query params')
-        self._request_headers= spec.get('request headers')
-        self._response_headers= spec.get('response headers')
-        self._success_statuscodes = spec.get('success_statuscodes')
-        self._fail_statuscodes = spec.get('fail_statuscodes')
+        self._task = spec.get('task')
+        self._api_name = spec.get('api_name')
+        self._path = spec.get('path')
+        self._method = spec.get('method')
+        self._query_params = spec.get('query params')
+        self._request_headers = spec.get('request headers')
+        self._response_headers = spec.get('response headers')
+        self._success_status_codes = spec.get('success_status_codes')
+        self._fail_status_codes = spec.get('fail_status_codes')
 
     def __str__(self):
-        output = []
-        output.append("task: %s:" % self._task)
-        output.append("api name: %s" % self._api_name)
-        output.append("path: %s:" % self._path)
-        output.append("method: %s:" % self._method)
-        output.append("query_params: %s" % self._query_params)
-        output.append("request headers: %s" % self._request_headers)
-        output.append("response headers: %s" % self._response_headers)
-        output.append("success statuscode: %s" % self._success_statuscodes)
-        output.append("Fail statuscodes: %s" % self._fail_statuscodes)
+        output = ['task: %s:' % self._task,
+                  'api name: %s' % self._api_name,
+                  'path: %s:' % self._path,
+                  'method: %s:' % self._method,
+                  'query_params: %s' % self._query_params,
+                  'request headers: %s' % self._request_headers,
+                  'response headers: %s' % self._response_headers,
+                  'success status code: %s' % self._success_status_codes,
+                  'Fail status codes: %s' % self._fail_status_codes]
         return '\n'.join(output)
 
-    def _loadApiSpec(self, task, api_name):
-        global ORACLOUD_STORAGE_STEC
-        try:
-            spec = ORACLOUD_STORAGE_STEC[task.lower()][api_name.lower()]
-        except KeyError, e:
-            raise ValueError("please check task and api_name. Target API Spec is not exist.(%s,%s)" %
-                             (task, api_name))
-        else:
-            return ApiSpec(spec)
-
     def get_success_statuscodes(self):
-        return self._success_statuscodes
+        return self._success_status_codes
 
     def get_fail_statuscodes(self):
-        return self._fail_statuscodes
+        return self._fail_status_codes
 
     def get_task(self):
         return self._task
@@ -321,3 +325,13 @@ class ApiSpec:
         placeholders = re.findall(r'{\w+}', self.get_path())
         return len(placeholders)>0
 
+
+def load_apispec(task, api_name):
+    global ORACLOUD_STORAGE_STEC
+    try:
+        spec = ORACLOUD_STORAGE_STEC[task.lower()][api_name.lower()]
+    except KeyError:
+        raise ValueError("please check task and api_name. Target API Spec is not exist.(%s,%s)" %
+                         (task, api_name))
+    else:
+        return ApiSpec(spec)

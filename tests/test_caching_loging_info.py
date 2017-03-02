@@ -1,37 +1,37 @@
+from __future__ import absolute_import
 import unittest
-from tests.util import get_data_dir_for_test
+from tests.util import get_target_dir_for_test
+from tests.util import get_login_info
+from tests.util import remove_login_info
+from tests.util import get_identity
 import os
-import ConfigParser
+
 
 class TestUtilConfigFile(unittest.TestCase):
     def test_data_dir(self):
-        test_dir = get_data_dir_for_test()
-        self.assertTrue('oracloud-storage-py/tests/data' in test_dir)
+        test_dir = get_target_dir_for_test()
+        self.assertTrue('oracloud-storage-py/target' in test_dir)
         self.assertTrue(os.path.isdir(test_dir))
         self.assertTrue(os.path.exists(test_dir))
 
-    def test_save_ini(self):
-        #basedir = get_data_dir_for_test()
-        section = 'login'
+    def test_cached_login_info(self):
+        login_ini = get_login_info()
+        target_dir = get_target_dir_for_test()
+        self.assertTrue(os.path.exists(target_dir+'/cache_orastorage.ini'))
 
-        account = ConfigParser.ConfigParser()
-        account.add_section(section)
+        self.assertTrue("@" in login_ini.get('login', 'user_id'))
+        self.assertTrue(login_ini.get('login', 'password') is not None)
+        self.assertTrue(login_ini.get('login', 'identity_domain') is not None)
 
-        user_id = os.environ.get("user_id")
-        password = os.environ.get("passowrd")
-        identity_domain = os.environ.get("domain")
+        remove_login_info()
+        self.assertFalse(os.path.exists(target_dir + '/cache_orastorage.ini'))
 
-        account.set(section, 'user_id', user_id)
-        account.set(section, 'password', password)
-        account.set(section, 'domain', identity_domain)
-
-
-
-
-
-
-
-
-
+    def test_get_identity(self):
+        remove_login_info()
+        login_info = get_login_info()
+        identity = get_identity()
+        self.assertEqual(identity.get_password(), login_info.get('login', 'password'))
+        self.assertEqual(identity.get_user_id(), login_info.get('login', 'user_id'))
+        self.assertEqual(identity.get_identity_domain(), login_info.get('login', 'identity_domain'))
 
 
