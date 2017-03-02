@@ -5,8 +5,8 @@ from requests.packages.urllib3.exceptions import SNIMissingWarning
 from requests.packages.urllib3.exceptions import InsecurePlatformWarning
 import requests
 from rest_meta import load_apispec
-from model import Identity
 import re
+
 
 
 def invoke_rest_api(task, api_name, identity_domain, headers_meta=None, url_metas=None, data=None):
@@ -53,16 +53,14 @@ def invoke_rest_api(task, api_name, identity_domain, headers_meta=None, url_meta
     elif spec.get_method() == "HEAD":
         response = requests.head(url=url, headers=headers)
     elif spec.get_method() == "POST":
-         response = requests.post(url=url, headers=headers, data=data)
+        response = requests.post(url=url, headers=headers, data=data)
     elif spec.get_method() == "PUT":
         response = requests.put(url=url, headers=headers, data=data)
     elif spec.get_method() == "DELETE":
         response = requests.delete(url=url, headers=headers)
 
-    if response.status_code in spec.get_success_statuscodes():
-        return response
-    else:
-        response.raise_for_status()
+    return response
+
 
 
 def gen_url(url, path, url_metas=None):
@@ -92,3 +90,5 @@ def gen_url(url, path, url_metas=None):
 
 def get_rest_end_point(identity_domain):
     return 'https://%s.storage.oraclecloud.com' % identity_domain
+
+
