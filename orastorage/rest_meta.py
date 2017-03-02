@@ -117,7 +117,7 @@ ORACLOUD_STORAGE_STEC = {
                                  'X-Timestamp',
                                  'X-Trans-Id'],
             'success_status_codes': [201, 202],
-            'fail_status_codes': [401, 403, ]
+            'fail_status_codes': [401, 403]
         },
         'delete container': {
             'task': 'containers',
