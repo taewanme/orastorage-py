@@ -4,9 +4,8 @@ from requests.packages.urllib3.exceptions import SubjectAltNameWarning
 from requests.packages.urllib3.exceptions import SNIMissingWarning
 from requests.packages.urllib3.exceptions import InsecurePlatformWarning
 import requests
-from rest_meta import load_apispec
+from orastorage.rest_meta import load_apispec
 import re
-
 
 
 def invoke_rest_api(task, api_name, identity_domain, headers_meta=None, url_metas=None, data=None):

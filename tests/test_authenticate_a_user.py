@@ -3,7 +3,6 @@ from orastorage.rest_identity import authenticate_a_user
 from orastorage.exceptions import *
 from tests.util import get_identity
 from orastorage.model import Identity
-from requests import HTTPError
 from requests import ConnectionError
 
 
